@@ -1,2 +1,4 @@
 #!/bin/bash
-touch hello
+chmod u+x hello
+
+
