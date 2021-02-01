@@ -1,2 +1,2 @@
 #!/bin/bash
-pwd iactac | head -n 3 foo.txt | tail -n 1
+tail -n 1 iacta >> iacta
