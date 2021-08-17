@@ -1,13 +1,11 @@
 #!/usr/bin/env bash
-# Configures Ngninx server so that /redirect_me is redirecting to another page
-sudo apt-get -y install nginx
-
-FILE=/etc/nginx/sites-available/default
-REDIRECT_STRING="location /redirect_me {\n return 301 http://www.google.com;\n}\n"
-
-echo "Holberton School" | sudo tee /usr/share/nginx/html/index.html
-service nginx start
-
-sudo sed -i "30i $REDIRECT_STRING" $FILE
-
+# Installing Nginx on Server and redirect
+sudo apt-get update -y && sudo apt-get upgrade -y
+sudo apt-get install -y nginx
+sudo chown -R "$USER":"$USER" /var/www/
+sudo chown -R "$USER":"$USER" /etc/nginx
+echo "Holberton School" > /var/www/html/index.nginx-debian.html
+line="\\\trewrite ^/redirect_me https://www.youtube.com/watch?v=dQw4w9WgXcQ permanent;"
+sudo sed -i "26i $line" /etc/nginx/sites-available/default
 sudo service nginx restart
+sudo service nginx reload
