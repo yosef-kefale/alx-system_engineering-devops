@@ -1,7 +1,9 @@
 #!/usr/bin/env bash
-# install nginx web server
-# adds Holberton School to index page of web server
-sudo apt-get -y install nginx
-echo "Holberton School" | sudo tee /usr/share/nginx/html/index.html
-
-service nginx start
+# Installing Nginx on Server
+sudo apt-get update -y && sudo apt-get upgrade -y
+sudo apt-get install -y nginx
+sudo chown -R "$USER":"$USER" /var/www/
+sudo chown -R "$USER":"$USER" /etc/nginx
+echo "Holberton School" > /var/www/html/index.nginx-debian.html
+sudo ufw allow 'Nginx HTTP'
+sudo service nginx restart
